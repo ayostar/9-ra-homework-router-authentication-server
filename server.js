@@ -96,6 +96,7 @@ router.post("/auth", async (ctx) => {
   if (user === undefined) {
     ctx.response.status = 400;
     ctx.response.body = { message: "Пользователь не найден (hint: vasya)" };
+    console.log(ctx.response.body);
     return;
   }
 
@@ -103,6 +104,7 @@ router.post("/auth", async (ctx) => {
   if (result === false) {
     ctx.response.status = 400;
     ctx.response.body = { message: "неверный пароль (hint: password)" };
+    console.log(ctx.response.body);
     return;
   }
 
@@ -130,6 +132,7 @@ router.get("/private/news/:id", async (ctx) => {
   if (item === undefined) {
     ctx.response.status = 404;
     ctx.response.body = { message: "ничего не найдено" };
+    console.log(ctx.response.body);
     return;
   }
   ctx.response.body = item;
