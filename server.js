@@ -95,14 +95,14 @@ router.post("/auth", async (ctx) => {
   const user = users.get(login);
   if (user === undefined) {
     ctx.response.status = 400;
-    ctx.response.body = { message: "Пользователь не найден" };
+    ctx.response.body = { message: "Пользователь не найден (hint: vasya)" };
     return;
   }
 
   const result = await bcrypt.compare(password, user.password);
   if (result === false) {
     ctx.response.status = 400;
-    ctx.response.body = { message: "неверный пароль" };
+    ctx.response.body = { message: "неверный пароль (hint: password)" };
     return;
   }
 
@@ -141,4 +141,5 @@ const port = process.env.PORT || 7878;
 const server = http.createServer(app.callback());
 
 // eslint-disable-next-line no-console
+console.log(port);
 server.listen(port, () => console.log("Server auth started"));
